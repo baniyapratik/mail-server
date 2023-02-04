@@ -18,3 +18,9 @@ services:
       MAIL_PASSWORD: ""
       FROM_NAME: "Pratik Baniya"
       FROM_ADDRESS: baniya.pratik@example.com
+
+  mailhog:
+    image: "mailhog/mailhog:latest"
+    ports:
+      - "1025:1025"
+      - "8025:8025"
