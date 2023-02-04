@@ -10,6 +10,7 @@ func (app *Config) routes() http.Handler {
 	mux := chi.NewRouter()
 	mux.Use(middleware.Logger)
 
-	mux.Use(middleware.Heartbeat("/health"))
+	mux.Use(middleware.Heartbeat("/health")) // health check
+	mux.Post("/send", app.SendMail)          // path to send mail
 	return mux
 }

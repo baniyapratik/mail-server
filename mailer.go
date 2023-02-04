@@ -5,6 +5,8 @@ import (
 	"github.com/vanng822/go-premailer/premailer"
 	mail "github.com/xhit/go-simple-mail/v2"
 	"html/template"
+	"os"
+	"strconv"
 	"time"
 )
 
@@ -154,4 +156,19 @@ func (m *Mail) getEncryption(s string) mail.Encryption {
 	default:
 		return mail.EncryptionSTARTTLS
 	}
+}
+
+func createMail() Mail {
+	port, _ := strconv.Atoi(os.Getenv("MAIL_PORT"))
+	m := Mail{
+		Domain:      os.Getenv("MAIL_DOMAIN"),
+		Host:        os.Getenv("MAIL_HOST"),
+		Port:        port,
+		Username:    os.Getenv("MAIL_USERNAME"),
+		Password:    os.Getenv("MAIL_PASSWORD"),
+		Encryption:  os.Getenv("MAIL_ENCRYPTION"),
+		FromName:    os.Getenv("MAIL_FROM_NAME"),
+		FromAddress: os.Getenv("MAIL_FROM_ADDRESS"),
+	}
+	return m
 }

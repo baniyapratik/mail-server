@@ -9,7 +9,9 @@ import (
 const appPort = "8080"
 
 func main() {
-	app := Config{}
+	app := Config{
+		Mailer: createMail(),
+	}
 	log.Println("Starting mail service on port", appPort)
 
 	srv := &http.Server{
